@@ -6,7 +6,6 @@ import React, { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import components from './components.png';
-//import styles from './index.styl';
 
 const Nav = styled.div`
     position: fixed;
@@ -14,7 +13,6 @@ const Nav = styled.div`
     bottom: 0;
     left: 0;
     z-index: 1006;
-    //min-width: 240px;
     background: #db3d44;
     transition: min-width 0.15s;
 `;
@@ -63,54 +61,81 @@ const SubNavItem = styled.li`
         z-index: -1;
     }
 
+    &:hover {
+        &::before {
+            opacity: 0.15;
+            background: #fff;
+        }
+        > a {
+            color: #fff;
+            background: transparent;
+        }
+    }
+
     > a {
         display: block;
-        color: rgb(249, 220, 221);
+        color: #f9dcdd;
+        font-weight: normal;
         font-size: 13px;
         line-height: 28px;
         text-decoration: none;
         padding: 0px 14px 0px 20px;
     }
 
-    &.selected > a {
+    ${props => (props.active && `
+    > a {
         color: #fff;
+        font-weight: bold;
+
+        &::before {
+            content: " ";
+            width: 2px;
+            height: 20px;
+            position: absolute;
+            left: 10px;
+            top: 4px;
+            border-left: 2px solid #fff;
+        }
     }
+    `)}
 `;
 
 const Main = styled.main`
     margin-left: 240px;
+    height: 100vh;
+    overflow-y: hidden;
 `;
 
 class App extends PureComponent {
     timer = null;
 
     state = {
-        component: 'react-anchor'
+        componentName: 'react-anchor'
     };
 
     components = [
-        'react-anchor',
-        'react-breadcrumbs',
-        'react-buttons',
-        'react-checkbox',
-        'react-datepicker',
-        'react-dropdown',
-        'react-iframe',
-        'react-interpolate',
-        'react-liquid-gauge',
-        'react-loader',
-        'react-modal',
-        'react-navbar',
-        'react-navs',
-        'react-notifications',
-        'react-paginations',
-        'react-popover',
-        'react-portal',
-        'react-radio-button',
-        'react-table',
-        'react-toggle-switch',
-        'react-tooltip',
-        'react-validation'
+        { name: 'react-anchor', label: 'Anchor' },
+        { name: 'react-breadcrumbs', label: 'Breadcrumbs' },
+        { name: 'react-buttons', label: 'Buttons' },
+        { name: 'react-checkbox', label: 'Checkbox' },
+        { name: 'react-datepicker', label: 'Datepicker' },
+        { name: 'react-dropdown', label: 'Dropdown' },
+        { name: 'react-iframe', label: 'Iframe' },
+        { name: 'react-interpolate', label: 'Interpolate' },
+        { name: 'react-liquid-gauge', label: 'Liquid Gauge' },
+        { name: 'react-loader', label: 'Loader' },
+        { name: 'react-modal', label: 'Modal' },
+        { name: 'react-navbar', label: 'Navbar' },
+        { name: 'react-navs', label: 'Navs' },
+        { name: 'react-notifications', label: 'Notifications' },
+        { name: 'react-paginations', label: 'Paginations' },
+        { name: 'react-popover', label: 'Popover' },
+        { name: 'react-portal', label: 'Portal' },
+        { name: 'react-radio-button', label: 'Radio Button' },
+        { name: 'react-table', label: 'Table' },
+        { name: 'react-toggle-switch', label: 'Toggle Switch' },
+        { name: 'react-tooltip', label: 'Tooltip' },
+        { name: 'react-validation', label: 'Validation' }
     ];
 
     render() {
@@ -119,19 +144,23 @@ class App extends PureComponent {
                 <Nav style={{ width: 240 }}>
                     <NavItems>
                         <NavItem>
-                            <Anchor style={{ fontSize: 14 }}>
+                            <Anchor style={{ fontSize: 16 }}>
                                 <img src={components} alt="" style={{ marginRight: 4 }} />
-                                <span style={{ color: '#fff', textTransform: 'uppercase' }}>COMPONENTS</span>
+                                <span style={{ color: '#fff' }}>React Components</span>
                             </Anchor>
                             <SubNavItems>
                                 {this.components.map(component => (
-                                    <SubNavItem>
+                                    <SubNavItem
+                                        key={component.name}
+                                        active={this.state.componentName === component.name}
+                                    >
                                         <Anchor
+                                            style={{ fontSize: 14 }}
                                             onClick={() => {
-                                                this.setState({ component: component });
+                                                this.setState({ componentName: component.name });
                                             }}
                                         >
-                                            {component}
+                                            {component.label}
                                         </Anchor>
                                     </SubNavItem>
                                 ))}
@@ -139,36 +168,10 @@ class App extends PureComponent {
                         </NavItem>
                     </NavItems>
                 </Nav>
-                <Main style={{ height: '99vh' }}>
+                <Main>
                     <Iframe
-                        ref={node => {
-                            if (this.timer) {
-                                clearInterval(this.timer);
-                                this.timer = null;
-                            }
-
-                            if (!node) {
-                                return;
-                            }
-
-                            const iframe = ReactDOM.findDOMNode(node);
-                            iframe.addEventListener('load', () => {
-                                const target = iframe.contentDocument.body;
-
-                                // Recalculate the height of the content
-                                iframe.style.height = 0;
-                                const nextHeight = target.scrollHeight;
-                                iframe.style.height = `${nextHeight}px`;
-
-                                this.timer = setInterval(() => {
-                                    // Recalculate the height of the content
-                                    iframe.style.height = 0;
-                                    const nextHeight = target.scrollHeight;
-                                    iframe.style.height = `${nextHeight}px`;
-                                }, 200);
-                            });
-                        }}
-                        src={`https://trendmicro-frontend.github.io/${this.state.component}/`}
+                        height="100%"
+                        src={`https://trendmicro-frontend.github.io/${this.state.componentName}/`}
                     />
                 </Main>
             </div>

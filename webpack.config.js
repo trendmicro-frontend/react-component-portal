@@ -1,31 +1,16 @@
-var pkg = require('./package.json');
-var path = require('path');
-var webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var findImports = require('find-imports');
-var stylusLoader = require('stylus-loader');
-var nib = require('nib');
-var publicname = pkg.name.replace(/^@\w+\//, ''); // Strip out "@trendmicro/" from package name
-var banner = [
-    publicname + ' v' + pkg.version,
-    '(c) ' + new Date().getFullYear() + ' Trend Micro Inc.',
-    pkg.license,
-    pkg.homepage
-].join(' | ');
-var localClassPrefix = publicname.replace(/^react-/, ''); // Strip out "react-" from publicname
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const stylusLoader = require('stylus-loader');
+const nib = require('nib');
 
 module.exports = {
     devtool: 'source-map',
-    entry: path.resolve(__dirname, 'src/index.js'),
+    entry: path.resolve(__dirname, 'index.jsx'),
     output: {
-        path: path.join(__dirname, 'lib'),
-        filename: 'index.js',
-        libraryTarget: 'commonjs2'
+        path: path.join(__dirname, 'docs'),
+        filename: 'bundle.js?[hash]'
     },
-    externals: []
-        .concat(findImports(['src/**/*.{js,jsx}'], { flatten: true }))
-        .concat(Object.keys(pkg.peerDependencies))
-        .concat(Object.keys(pkg.dependencies)),
     module: {
         rules: [
             // http://survivejs.com/webpack_react/linting_in_webpack/
@@ -47,28 +32,42 @@ module.exports = {
             },
             {
                 test: /\.styl$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: 'css-loader?camelCase&modules&importLoaders=1&localIdentName=' + localClassPrefix + '---[local]---[hash:base64:5]!stylus-loader'
-                })
+                use: [
+                    'style-loader',
+                    'css-loader?camelCase&modules&importLoaders=1&localIdentName=[local]---[hash:base64:5]',
+                    'stylus-loader'
+                ]
             },
             {
                 test: /\.css$/,
                 loader: 'style-loader!css-loader'
             },
             {
-                test: /\.(png|jpg|svg)$/,
-                loader: 'url-loader'
+                test: /\.(png|jpg)$/,
+                loader: 'url-loader',
+                options: {
+                    limit: 8192
+                }
+            },
+            {
+                test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                loader: 'url-loader',
+                options: {
+                    limit: 10000,
+                    mimetype: 'application/font-woff'
+                }
+            },
+            {
+                test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                loader: 'file-loader'
             }
         ]
     },
     plugins: [
-        new webpack.DefinePlugin({
-            'process.env': {
-                // This has effect on the react lib size
-                NODE_ENV: JSON.stringify('production')
-            }
+        new webpack.LoaderOptionsPlugin({
+            debug: true
         }),
+        new webpack.NamedModulesPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
         new stylusLoader.OptionsPlugin({
             default: {
@@ -78,10 +77,23 @@ module.exports = {
                 import: ['~nib/lib/nib/index.styl']
             }
         }),
-        new ExtractTextPlugin('../dist/' + publicname + '.css'),
-        new webpack.BannerPlugin(banner)
+        new HtmlWebpackPlugin({
+            filename: '../docs/index.html',
+            template: 'index.html'
+        })
     ],
     resolve: {
         extensions: ['.js', '.json', '.jsx']
+    },
+    // https://webpack.github.io/docs/webpack-dev-server.html#additional-configuration-options
+    devServer: {
+        disableHostCheck: true,
+        noInfo: false,
+        lazy: false,
+        // https://webpack.github.io/docs/node.js-api.html#compiler
+        watchOptions: {
+            poll: true, // use polling instead of native watchers
+            ignored: /node_modules/
+        }
     }
 };
