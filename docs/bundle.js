@@ -177,7 +177,10 @@ var App = function (_PureComponent) {
                             null,
                             _react2.default.createElement(
                                 _reactAnchor2.default,
-                                { style: { fontSize: 16 } },
+                                {
+                                    style: { fontSize: 16 },
+                                    href: 'https://github.com/trendmicro-frontend/react-component-portal'
+                                },
                                 _react2.default.createElement('img', { src: _components2.default, alt: '', style: { marginRight: 4 } }),
                                 _react2.default.createElement(
                                     'span',
@@ -24123,4 +24126,4 @@ module.exports = function(originalModule) {
 /***/ })
 
 /******/ });
-//# sourceMappingURL=bundle.js.map?990d81c4afcfcde9922f
+//# sourceMappingURL=bundle.js.map?d877d883e07a1e9c6fe2

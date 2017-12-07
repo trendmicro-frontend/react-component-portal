@@ -144,7 +144,10 @@ class App extends PureComponent {
                 <Nav style={{ width: 240 }}>
                     <NavItems>
                         <NavItem>
-                            <Anchor style={{ fontSize: 16 }}>
+                            <Anchor
+                                style={{ fontSize: 16 }}
+                                href={'https://github.com/trendmicro-frontend/react-component-portal'}
+                            >
                                 <img src={components} alt="" style={{ marginRight: 4 }} />
                                 <span style={{ color: '#fff' }}>React Components</span>
                             </Anchor>
