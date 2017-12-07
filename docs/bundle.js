@@ -80,7 +80,7 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAyCAYAAAAu
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _templateObject = _taggedTemplateLiteral(['\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    z-index: 1006;\n    background: #db3d44;\n    transition: min-width 0.15s;\n'], ['\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    z-index: 1006;\n    background: #db3d44;\n    transition: min-width 0.15s;\n']),
+var _templateObject = _taggedTemplateLiteral(['\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    z-index: 1006;\n    background: #db3d44;\n    transition: min-width 0.15s;\n    overflow-y: auto;\n    width: 240px;\n'], ['\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    z-index: 1006;\n    background: #db3d44;\n    transition: min-width 0.15s;\n    overflow-y: auto;\n    width: 240px;\n']),
     _templateObject2 = _taggedTemplateLiteral(['\n    float: left;\n    clear: both;\n    width: 100%;\n    padding: 0;\n    margin: 0;\n    list-style: none;\n'], ['\n    float: left;\n    clear: both;\n    width: 100%;\n    padding: 0;\n    margin: 0;\n    list-style: none;\n']),
     _templateObject3 = _taggedTemplateLiteral(['\n    clear: both;\n    position: relative;\n'], ['\n    clear: both;\n    position: relative;\n']),
     _templateObject4 = _taggedTemplateLiteral(['\n    list-style: none;\n    padding: 0;\n    margin: 0;\n\n    float: left;\n    clear: both;\n    width: 100%;\n    box-shadow: none;\n    border-width: initial;\n    border-style: none;\n    border-color: initial;\n    border-image: initial;\n    background: transparent;\n    overflow: hidden;\n'], ['\n    list-style: none;\n    padding: 0;\n    margin: 0;\n\n    float: left;\n    clear: both;\n    width: 100%;\n    box-shadow: none;\n    border-width: initial;\n    border-style: none;\n    border-color: initial;\n    border-image: initial;\n    background: transparent;\n    overflow: hidden;\n']),
@@ -168,7 +168,7 @@ var App = function (_PureComponent) {
                 null,
                 _react2.default.createElement(
                     Nav,
-                    { style: { width: 240 } },
+                    null,
                     _react2.default.createElement(
                         NavItems,
                         null,
@@ -24126,4 +24126,4 @@ module.exports = function(originalModule) {
 /***/ })
 
 /******/ });
-//# sourceMappingURL=bundle.js.map?2842cbc8796e1f081d81
+//# sourceMappingURL=bundle.js.map?e3efb571701aa9fa5306
