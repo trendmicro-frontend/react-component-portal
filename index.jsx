@@ -15,6 +15,8 @@ const Nav = styled.div`
     z-index: 1006;
     background: #db3d44;
     transition: min-width 0.15s;
+    overflow-y: auto;
+    width: 240px;
 `;
 
 const NavItems = styled.ul`
@@ -141,7 +143,7 @@ class App extends PureComponent {
     render() {
         return (
             <div>
-                <Nav style={{ width: 240 }}>
+                <Nav>
                     <NavItems>
                         <NavItem>
                             <Anchor
