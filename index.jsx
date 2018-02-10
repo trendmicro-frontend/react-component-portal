@@ -23,6 +23,7 @@ class App extends PureComponent {
     };
 
     components = [
+        { name: 'react-grid-system', label: 'Grid System' },
         { name: 'react-anchor', label: 'Anchor' },
         { name: 'react-breadcrumbs', label: 'Breadcrumbs' },
         { name: 'react-buttons', label: 'Buttons' },
