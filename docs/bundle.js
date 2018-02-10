@@ -142,7 +142,7 @@ var App = function (_PureComponent) {
 
         return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = App.__proto__ || Object.getPrototypeOf(App)).call.apply(_ref, [this].concat(args))), _this), _this.timer = null, _this.state = {
             expanded: true,
-            componentName: 'react-anchor'
+            componentName: 'react-grid-system'
         }, _this.components = [{ name: 'react-grid-system', label: 'Grid System' }, { name: 'react-anchor', label: 'Anchor' }, { name: 'react-breadcrumbs', label: 'Breadcrumbs' }, { name: 'react-buttons', label: 'Buttons' }, { name: 'react-checkbox', label: 'Checkbox' }, { name: 'react-datepicker', label: 'Datepicker' }, { name: 'react-dropdown', label: 'Dropdown' }, { name: 'react-iframe', label: 'Iframe' }, { name: 'react-interpolate', label: 'Interpolate' }, { name: 'react-liquid-gauge', label: 'Liquid Gauge' }, { name: 'react-loader', label: 'Loader' }, { name: 'react-modal', label: 'Modal' }, { name: 'react-navbar', label: 'Navbar' }, { name: 'react-navs', label: 'Navs' }, { name: 'react-notifications', label: 'Notifications' }, { name: 'react-paginations', label: 'Paginations' }, { name: 'react-popover', label: 'Popover' }, { name: 'react-portal', label: 'Portal' }, { name: 'react-radio', label: 'Radio' }, { name: 'react-sidenav', label: 'Side Navigation' }, { name: 'react-table', label: 'Table' }, { name: 'react-toggle-switch', label: 'Toggle Switch' }, { name: 'react-tooltip', label: 'Tooltip' }, { name: 'react-validation', label: 'Validation' }], _temp), _possibleConstructorReturn(_this, _ret);
     }
 
@@ -25245,4 +25245,4 @@ module.exports = function(originalModule) {
 /***/ })
 
 /******/ });
-//# sourceMappingURL=bundle.js.map?cc26704c5afe822ff5ac
+//# sourceMappingURL=bundle.js.map?f23b0f345083593b2090

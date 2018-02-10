@@ -19,7 +19,7 @@ class App extends PureComponent {
 
     state = {
         expanded: true,
-        componentName: 'react-anchor'
+        componentName: 'react-grid-system'
     };
 
     components = [
